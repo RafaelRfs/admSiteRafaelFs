@@ -1,4 +1,4 @@
-System in HTML 5,CSS 3, Struts,Maven, Java,Jstl, Mysql,Hibernate,Gson,DisplayTable, Bootstrap,Javascript,
+System in HTML 5,CSS 3, Struts,Maven, Java,Jstl, Mysql,Hibernate,Gson,DisplayTable, Bootstrap,Font-Awesome,Javascript,
 Ajax,Gson, AngularJs e Jquery by Rafael F.S
 
 Database:

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "dao.DAO" table = "services">
+      <meta attribute = "class-description">
+      Classes dos serviços do site
+      </meta>
+      <id name = "id" type = "int" column = "id">
+      <generator class="native"/>
+      </id>
+      <property name = "nome" column = "nome" type = "string"/>
+      <property name = "descricao" column = "descricao" type = "string"/>
+      <property name = "conteudo" column = "conteudo" type = "string"/>
+      <property name = "img" column = "img" type = "string"/>
+      <property name = "data_mod" column = "data_mod" type = "date"/>
+   </class>
+</hibernate-mapping>

@@ -6,7 +6,6 @@ public class DAO{
 	private String conteudo;
 	private String data_mod;
 	private String img;
-	
 	public Integer getId() {
 		return id;
 	}

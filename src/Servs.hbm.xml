@@ -14,7 +14,7 @@
       <property name = "nome" column = "nome" type = "string"/>
       <property name = "descricao" column = "descricao" type = "string"/>
       <property name = "conteudo" column = "conteudo" type = "string"/>
+      <property name = "data_mod" column = "data_mod" type = "string"/>
       <property name = "img" column = "img" type = "string"/>
-      <property name = "data_mod" column = "data_mod" type = "date"/>
    </class>
 </hibernate-mapping>

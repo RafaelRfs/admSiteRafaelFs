@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.TypedQuery;
@@ -21,9 +22,15 @@ import dao.DAO;
 import forms.servsForm;
 
 public class actionMain extends DispatchAction{
-	private static String INSERTSERVICES = "insertservices";
-	private static String LISTSERVICES = "listservices";
+	private static final String INSERTSERVICES = "insertservices";
+	private static final String LISTSERVICES = "listservices";
 	private SessionFactory factory;
+	
+	private String getDataNow() {
+		Date dt =  new Date();
+		SimpleDateFormat fmt = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+		return fmt.format(dt);
+	}
 	
 	public SessionFactory getFactory(){
 		try{
@@ -79,14 +86,15 @@ public class actionMain extends DispatchAction{
 	public void save(ActionMapping mapping, ActionForm form,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		servsForm srvs = (servsForm) form; 
 		Session session = getFactory().openSession();
+
 		try{
 		 Transaction tx = null;
 		 DAO servico =  new DAO();
 		 servico.setNome(srvs.getNome());
 		 servico.setDescricao(srvs.getDescricao());
 		 servico.setConteudo(srvs.getConteudo());
-		 servico.setImg(srvs.getImg());
-		 servico.setData_mod(new Date());
+		 servico.setImg(srvs.getImg());	
+		 servico.setData_mod(getDataNow());		
 		 session.save(servico);
 		 tx = session.beginTransaction();
 		 session.getTransaction().commit();
@@ -111,7 +119,7 @@ public class actionMain extends DispatchAction{
 		      ArrayList<DAO> servs = (ArrayList<DAO>) query.getResultList();
 		      srvs.setId(servs.get(0).getId());
 		      srvs.setNome(servs.get(0).getNome());
-		      srvs.setData_mod(servs.get(0).getData_mod().toString());
+		      srvs.setData_mod(servs.get(0).getData_mod());
 		      srvs.setDescricao(servs.get(0).getDescricao());
 		      srvs.setConteudo(servs.get(0).getConteudo());
 		      srvs.setImg(servs.get(0).getImg());
@@ -119,10 +127,11 @@ public class actionMain extends DispatchAction{
 		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}finally {session.close();}
-		
-		return srvs;
-		
+		return srvs;	
 	}
+	
+	
+	
 	
 	private servsForm insertServ(servsForm srvs) {
 		Session session = getFactory().openSession();
@@ -134,7 +143,7 @@ public class actionMain extends DispatchAction{
 			 servico.setDescricao(srvs.getDescricao());
 			 servico.setConteudo(srvs.getConteudo());
 			 servico.setImg(srvs.getImg());
-			 servico.setData_mod(new Date());
+			 servico.setData_mod(getDataNow());
 			 session.save(servico);
 			 tx = session.beginTransaction();
 			 session.getTransaction().commit();
